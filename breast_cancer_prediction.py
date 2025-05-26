@@ -35,23 +35,6 @@ def load_data():
 df = load_data()
 
 
-# EDA Visualizations
-("Exploratory Data Analysis")
-
-# Target distribution
-("### Target Class Distribution")
-fig, ax = plt.subplots(figsize=(6,4))
-sns.countplot(data=df, x='target', ax=ax)
-ax.set_xlabel('Target (0 = Malignant, 1 = Benign)')
-ax.set_ylabel('Count')
-(fig)
-
-# Correlation heatmap
-("### Feature Correlation Heatmap")
-fig, ax = plt.subplots(figsize=(12,10))
-sns.heatmap(df.corr(), annot=False, cmap='coolwarm', ax=ax)
-(fig)
-
 # Model training and evaluation
 ("Model Training and Evaluation")
 
