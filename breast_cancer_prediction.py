@@ -138,9 +138,9 @@ if st.button("Predict"):
     st.subheader("Prediction Result")
     
     if prediction[0] == 1:
-        st.success("The tumor is predicted to be **Benign** (non-cancerous)")
+        st.success("The tumor is predicted to be **✅Benign** (non-cancerous)")
     else:
-        st.error("The tumor is predicted to be **Malignant** (cancerous)")
+        st.error("The tumor is predicted to be **🚨Malignant** (cancerous)")
     
     st.write(f"Probability of being Benign: {prediction_prob[0][1]:.2%}")
     st.write(f"Probability of being Malignant: {prediction_prob[0][0]:.2%}")
