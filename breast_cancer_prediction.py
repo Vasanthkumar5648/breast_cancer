@@ -44,13 +44,13 @@ fig, ax = plt.subplots(figsize=(6,4))
 sns.countplot(data=df, x='target', ax=ax)
 ax.set_xlabel('Target (0 = Malignant, 1 = Benign)')
 ax.set_ylabel('Count')
-st.pyplot(fig)
+(fig)
 
 # Correlation heatmap
 ("### Feature Correlation Heatmap")
 fig, ax = plt.subplots(figsize=(12,10))
 sns.heatmap(df.corr(), annot=False, cmap='coolwarm', ax=ax)
-st.pyplot(fig)
+(fig)
 
 # Model training and evaluation
 ("Model Training and Evaluation")
@@ -162,11 +162,3 @@ if st.button("Predict"):
     st.write(f"Probability of being Benign: {prediction_prob[0][1]:.2%}")
     st.write(f"Probability of being Malignant: {prediction_prob[0][0]:.2%}")
 
-# Download model
-st.sidebar.header("Model Download")
-st.sidebar.download_button(
-    label="Download Trained Model",
-    data=pickle.dumps(model),
-    file_name="breast_cancer_model.pkl",
-    mime="application/octet-stream"
-)
