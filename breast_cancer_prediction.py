@@ -34,10 +34,6 @@ def load_data():
 
 df = load_data()
 
-
-# Model training and evaluation
-("Model Training and Evaluation")
-
 # Split data
 X = df.drop('target', axis=1)
 y = df['target']
