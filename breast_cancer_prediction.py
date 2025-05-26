@@ -34,24 +34,12 @@ def load_data():
 
 df = load_data()
 
-# Display raw data
-if st.checkbox("Show raw data"):
-    st.subheader("Breast Cancer Dataset")
-    st.write(df.head())
-
-# Display data info
-if st.checkbox("Show data information"):
-    st.subheader("Dataset Information")
-    buffer = io.StringIO()
-    df.info(buf=buffer)
-    s = buffer.getvalue()
-    st.text(s)
 
 # EDA Visualizations
-st.subheader("Exploratory Data Analysis")
+("Exploratory Data Analysis")
 
 # Target distribution
-st.write("### Target Class Distribution")
+("### Target Class Distribution")
 fig, ax = plt.subplots(figsize=(6,4))
 sns.countplot(data=df, x='target', ax=ax)
 ax.set_xlabel('Target (0 = Malignant, 1 = Benign)')
@@ -59,13 +47,13 @@ ax.set_ylabel('Count')
 st.pyplot(fig)
 
 # Correlation heatmap
-st.write("### Feature Correlation Heatmap")
+("### Feature Correlation Heatmap")
 fig, ax = plt.subplots(figsize=(12,10))
 sns.heatmap(df.corr(), annot=False, cmap='coolwarm', ax=ax)
 st.pyplot(fig)
 
 # Model training and evaluation
-st.subheader("Model Training and Evaluation")
+("Model Training and Evaluation")
 
 # Split data
 X = df.drop('target', axis=1)
@@ -84,44 +72,6 @@ model.fit(X_train_scaled, y_train)
 # Make predictions
 y_pred = model.predict(X_test_scaled)
 y_pred_prob = model.predict_proba(X_test_scaled)[:, 1]
-
-# Display metrics
-st.write("### Model Performance Metrics")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.write("**Accuracy:**", accuracy_score(y_test, y_pred))
-    
-    st.write("**Confusion Matrix:**")
-    cm = confusion_matrix(y_test, y_pred)
-    fig, ax = plt.subplots(figsize=(4,4))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
-    ax.set_xlabel('Predicted')
-    ax.set_ylabel('Actual')
-    st.pyplot(fig)
-
-with col2:
-    st.write("**Classification Report:**")
-    report = classification_report(y_test, y_pred, output_dict=True)
-    report_df = pd.DataFrame(report).transpose()
-    st.dataframe(report_df)
-
-# ROC Curve
-st.write("### ROC Curve")
-roc_auc = roc_auc_score(y_test, y_pred_prob)
-fpr, tpr, _ = roc_curve(y_test, y_pred_prob)
-
-fig, ax = plt.subplots(figsize=(8,6))
-ax.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC Curve (AUC = {roc_auc:.2f})')
-ax.plot([0,1], [0,1], color='navy', lw=2, linestyle='--')
-ax.set_xlim([0.0, 1.0])
-ax.set_ylim([0.0, 1.05])
-ax.set_xlabel('False Positive Rate')
-ax.set_ylabel('True Positive Rate')
-ax.set_title('Receiver Operating Characteristic')
-ax.legend(loc="lower right")
-st.pyplot(fig)
 
 # Prediction interface
 st.subheader("Make a Prediction")
