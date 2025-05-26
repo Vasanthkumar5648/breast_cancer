@@ -29,7 +29,7 @@ The model was trained on the Wisconsin Breast Cancer Dataset.
 # Load data
 @st.cache_data
 def load_data():
-    df = pd.read_csv(r"C:\Users\vasanth\Downloads\breast_cancer_data.csv")
+    df = pd.read_csv('https://raw.github.com/Vasanthkumar5648/breast_cancer/main/breast_cancer_data.csv')
     return df
 
 df = load_data()
